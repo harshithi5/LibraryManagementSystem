@@ -4,20 +4,33 @@ import Searchcard from './Searchcard';
 
 function Shelf() {
   const [likedBooks, setLikedBooks] = useState([]);
-  const userId = '685b694ba353bd8aeb09f6db'; // Replace with actual logged-in user ID
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const fetchLikedBooks = async () => {
-      try {
-        // Step 1: Get user and their liked book IDs
-        const userRes = await axios.get(`http://localhost:5000/users/${userId}`);
-        const likedBookIds = userRes.data.likedBooks.map(id => id.toString());
+      const token = localStorage.getItem('token');
+      if (!token) return;
 
-        // Step 2: Get all books
+      try {
+        // Step 1: Get logged-in user ID
+        const userRes = await axios.get('http://localhost:5000/users/me/id', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const id = userRes.data.userId;
+        setUserId(id);
+
+        // Step 2: Get user and their liked book IDs
+        const likedRes = await axios.get(`http://localhost:5000/users/${id}`);
+        const likedBookIds = likedRes.data.likedBooks.map(book => book._id.toString());
+
+        // Step 3: Get all books
         const booksRes = await axios.get('http://localhost:5000/books');
         const allBooks = booksRes.data;
 
-        // Step 3: Filter liked books
+        // Step 4: Filter liked books
         const filtered = allBooks.filter(book => likedBookIds.includes(book._id));
         setLikedBooks(filtered);
       } catch (err) {

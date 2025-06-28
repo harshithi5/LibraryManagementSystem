@@ -3,7 +3,38 @@ import { useLocation } from 'react-router-dom';
 import Searchcard from './Searchcard';
 import axios from 'axios';
 
-function Queryresult({ likedBooks, userId }) {
+function Queryresult() {
+    const [likedBooks, setLikedBooks] = useState([]);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const fetchLikedBooks = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        // Step 1: Get logged-in user ID
+        const userRes = await axios.get('http://localhost:5000/users/me/id', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const id = userRes.data.userId;
+        setUserId(id);
+
+        // Step 2: Fetch liked books using that ID
+        const res = await axios.get(`http://localhost:5000/users/${id}`);
+        const liked = res.data.likedBooks.map(book => book._id.toString());
+        setLikedBooks(liked);
+      } catch (err) {
+        console.error("Error fetching liked books:", err);
+      }
+    };
+
+    fetchLikedBooks();
+  }, []);
+
     const [books, setBooks] = useState([]);
     const location = useLocation();
 

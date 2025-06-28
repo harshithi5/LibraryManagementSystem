@@ -14,8 +14,12 @@ function Searchcard(props) {
   const [isBorrowed, setIsBorrowed] = useState(false);
   const [isUnavailable, setIsUnavailable] = useState(props.avail === 'Out of Stock');
 
+  // Sync liked state with props.isLiked
   useEffect(() => {
-    // Check if user has already borrowed this book
+    setLiked(props.isLiked);
+  }, [props.isLiked]);
+
+  useEffect(() => {
     axios.get(`http://localhost:5000/users/${props.userId}`)
       .then(res => {
         const borrowed = res.data.borrowedBooks.find(b => b.bookId === props.bookId && !b.returned);
@@ -46,7 +50,7 @@ function Searchcard(props) {
     try {
       await axios.post(`http://localhost:5000/users/${props.userId}/borrow/${props.bookId}`);
       setIsBorrowed(true);
-      setIsUnavailable(props.avail === 'In-Shelf' && props.availCount - 1 === 0); // Optional: update state
+      setIsUnavailable(props.avail === 'In-Shelf' && props.availCount - 1 === 0);
     } catch (err) {
       console.error("Error borrowing book:", err);
     }

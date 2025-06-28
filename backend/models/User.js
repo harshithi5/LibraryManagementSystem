@@ -18,7 +18,8 @@ const borrowedBookSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true }, // 🔐 added this
   contact: String,
   address: String,
   borrowedBooks: [borrowedBookSchema],

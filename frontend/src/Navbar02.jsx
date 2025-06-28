@@ -48,8 +48,10 @@ function Navbar02() {
   };
 
   const handleLogout = () => {
-    alert("Logged out");
+    localStorage.removeItem('token');
     setShowDropdown(false);
+    alert('Logged out successfully');
+    navigate('/');
   };
 
   return (

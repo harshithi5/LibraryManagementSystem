@@ -4,13 +4,36 @@ import Historycard from './Historycard';
 
 function History() {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
-  const userId = '685b694ba353bd8aeb09f6db'; // Replace with actual logged-in user ID
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
+    const fetchUserId = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const res = await axios.get('http://localhost:5000/users/me/id', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setUserId(res.data.userId);
+      } catch (err) {
+        console.error("Error fetching user ID:", err);
+      }
+    };
+
+    fetchUserId();
+  }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+
     axios.get(`http://localhost:5000/users/${userId}/borrowed`)
       .then(res => setBorrowedBooks(res.data))
       .catch(err => console.error("Error fetching borrowed books:", err));
-  }, []);
+  }, [userId]);
 
   return (
     <div className="flex flex-wrap gap-x-6 gap-y-6 pt-5">

@@ -16,12 +16,32 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const userId = '685b694ba353bd8aeb09f6db';
+    const fetchRecentReads = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
 
-    axios.get(`http://localhost:5000/users/${userId}/recent-reads`)
-      .then(res => setRecentReads(res.data))
-      .catch(err => console.error("Error fetching recent reads:", err));
+      try {
+        // Step 1: Get logged-in user's ID
+        const userRes = await axios.get('http://localhost:5000/users/me/id', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const userId = userRes.data.userId;
+
+        // Step 2: Fetch recent reads for that user
+        const res = await axios.get(`http://localhost:5000/users/${userId}/recent-reads`);
+        setRecentReads(res.data);
+
+      } catch (err) {
+        console.error("Error fetching recent reads:", err);
+      }
+    };
+
+    fetchRecentReads();
   }, []);
+
 
   return (
     <div>
