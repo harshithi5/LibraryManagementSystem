@@ -26,6 +26,20 @@ router.get('/me/id', auth, (req, res) => {
   res.json({ userId: req.user.id });
 });
 
+// Get current logged-in user's username
+router.get('/me', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('name');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json(user);
+  } catch (err) {
+    console.error("Error fetching user details:", err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // Get recent reads (returned books sorted by borrow date)
 router.get('/:id/recent-reads', async (req, res) => {
   try {

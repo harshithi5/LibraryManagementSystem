@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import Arrivals from './Arrivals';
 import GM from './GM';
 import Booklist from './Booklist';
+import Loader from './Loader';
 
 function Home() {
   const [recommended, setRecommended] = useState([]);
   const [recentReads, setRecentReads] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     axios.get('http://localhost:5000/books/recommended')
@@ -33,6 +34,7 @@ function Home() {
         // Step 2: Fetch recent reads for that user
         const res = await axios.get(`http://localhost:5000/users/${userId}/recent-reads`);
         setRecentReads(res.data);
+        setLoading(false);
 
       } catch (err) {
         console.error("Error fetching recent reads:", err);
@@ -42,6 +44,7 @@ function Home() {
     fetchRecentReads();
   }, []);
 
+  if (loading) return <Loader />;
 
   return (
     <div>

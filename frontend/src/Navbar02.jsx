@@ -1,17 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import Search from './assets/searchorange.svg';
 import Calendar from './assets/calendarorange.svg';
 import Avatar from './assets/avatar.svg';
 import DD from './assets/dropdown.svg';
+import axios from 'axios';
 
 function Navbar02() {
   const [query, setQuery] = useState('');
   const [currentTime, setCurrentTime] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [userName, setUserName] = useState('');
   const navigate = useNavigate();
   const avatarRef = useRef(null);
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const res = await axios.get('http://localhost:5000/users/me', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setUserName(res.data.name);
+      } catch (err) {
+        console.error('Error fetching user name:', err);
+      }
+    };
+
+    fetchUserName();
+  }, []);
+
 
   useEffect(() => {
     const updateTime = () => {
@@ -86,7 +108,7 @@ function Navbar02() {
           <div className='h-8 w-8 rounded-full bg-red-800 flex items-center justify-center'>
             <img src={Avatar} className='h-full' alt="avatar" />
           </div>
-          <div className='text-zinc-600 text-sm font-medium'>Harshit</div>
+          <div className='text-zinc-600 text-sm font-medium'>{userName}</div>
           <div><img src={DD} className='h-8' alt="dropdown" /></div>
         </div>
 

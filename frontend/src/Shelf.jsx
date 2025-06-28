@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Searchcard from './Searchcard';
+import Loader from './Loader';
 
 function Shelf() {
   const [likedBooks, setLikedBooks] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLikedBooks = async () => {
@@ -33,6 +35,7 @@ function Shelf() {
         // Step 4: Filter liked books
         const filtered = allBooks.filter(book => likedBookIds.includes(book._id));
         setLikedBooks(filtered);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching liked books:", err);
       }
@@ -44,6 +47,8 @@ function Shelf() {
   const handleUnlike = (bookId) => {
     setLikedBooks(prev => prev.filter(book => book._id !== bookId));
   };
+
+  if (loading) return <Loader />; 
 
   return (
     <div className="p-10 px-0 flex flex-col overflow-y-auto h-full mt-5" style={{ scrollbarWidth: 'none' }}>

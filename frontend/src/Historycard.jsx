@@ -1,12 +1,10 @@
 import React from 'react';
-import BookCover01 from './assets/bookcover01.jpg';
 
 function Historycard(props) {
   const today = new Date();
   const dueDate = new Date(props.submitdate);
   const isOverdue = today > dueDate;
 
-  // 🟩 Determine the status and corresponding background color
   let statusLabel = 'Borrowed';
   let statusClass = 'bg-zinc-700';
 
@@ -25,7 +23,7 @@ function Historycard(props) {
     <div className='bg-white rounded-xl w-80 flex'>
       <div className='w-40 flex flex-col items-start justify-center p-3'>
         <div className='h-40 w-30'>
-          <img src={BookCover01} className='h-full w-full rounded object-center' />
+          <img src={props.cover} className='h-full w-full rounded object-center' />
         </div>
         <div className='text-zinc-800 text-[0.78rem] w-30'>
           {props.title}

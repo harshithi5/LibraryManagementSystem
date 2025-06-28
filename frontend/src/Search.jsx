@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Searchcard from './Searchcard';
+import Loader from './Loader';
 
 function Search() {
   const [books, setBooks] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [likedBooks, setLikedBooks] = useState([]);
   const [userId, setUserId] = useState(null);
 
@@ -28,6 +29,7 @@ function Search() {
         const res = await axios.get(`http://localhost:5000/users/${id}`);
         const liked = res.data.likedBooks.map(book => book._id.toString());
         setLikedBooks(liked);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching liked books:", err);
       }
@@ -41,6 +43,8 @@ function Search() {
       .then(res => setBooks(res.data))
       .catch(err => console.error("Error:", err));
   }, []);
+
+  if (loading) return <Loader />; 
 
   return (
     <div className="p-10 px-0 flex flex-col overflow-y-auto h-full mt-5" style={{ scrollbarWidth: 'none' }}>
