@@ -47,7 +47,7 @@ function History() {
   if (loading) return <Loader />;
 
   return (
-    <div className="flex flex-wrap gap-x-6 gap-y-6 pt-5">
+    <div className="flex flex-wrap gap-x-6 gap-y-6 pt-5 px-2 lg:px-6">
       {borrowedBooks.map((item, index) => (
         <Historycard
           key={index}

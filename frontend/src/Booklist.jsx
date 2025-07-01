@@ -2,7 +2,7 @@ import React from 'react';
 
 function Booklist({ heading, books = [] }) {
   return (
-    <div className='w-290 p-3'>
+    <div className='w-[calc(100vw-12rem)] lg:w-[calc(100vw-20rem)] p-2 lg:px-6'>
       <div className='text-lg text-zinc-700'>{heading}</div>
       <div className='h-70 flex gap-8 py-3 w-full overflow-x-auto' style={{ scrollbarWidth: 'none' }}>
         {books.map((book, index) => (

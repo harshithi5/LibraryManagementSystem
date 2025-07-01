@@ -13,7 +13,7 @@ import ProtectedRoute from './ProtectedRoute';
 function Dashboard() {
   return ( 
     <div className="flex">
-      <div className="h-screen w-80">
+      <div className="h-screen w-48 lg:w-80">
         <Left />
       </div>
 

@@ -86,29 +86,29 @@ function Searchcard(props) {
         </div>
       )}
 
-      <div className='bg-white h-40 p-5 flex justify-between rounded'>
-        <div><img src={props.cover} className='h-30 w-25 rounded' /></div>
+      <div className='bg-white h-30 md:h-40 p-5 flex justify-between rounded'>
+        <div><img src={props.cover} className='h-20 w-15 md:h-30 md:w-25 rounded' /></div>
 
         <div className='flex flex-col gap-3 justify-center'>
-          <div className='w-50 text-lg text-zinc-600'>{props.title}</div>
-          <div className='text-sm text-gray-600'>{props.writer}</div>
+          <div className='w-30 lg:w-40 xl:w-50 text-base md:text-lg text-zinc-600'>{props.title}</div>
+          <div className='text-xs md:text-sm text-gray-600'>{props.writer}</div>
         </div>
 
         <div className='flex items-center'>
-          <div className='text-xl text-zinc-800'>{props.rating}</div>
+          <div className='text-sm md:text-xl text-zinc-800'>{props.rating}</div>
           <div className='text-xs text-zinc-500'>/5</div>
         </div>
 
-        <div className='text-zinc-600 items-center flex'>
+        <div className='text-zinc-600 items-center flex text-xs md:text-sm xl:text-base '>
           {props.category}
         </div>
 
         <div className='flex flex-col justify-center gap-3 items-center'>
           <div className='flex'>
-            <img src={Location} className='h-5' />
-            <div className='text-zinc-600'>{props.location}</div>
+            <img src={Location} className='h-4 xl:h-5' />
+            <div className='text-zinc-600 text-sm xl:text-base'>{props.location}</div>
           </div>
-          <div className={`px-4 py-1 rounded-lg text-white ${props.color}`}>
+          <div className={`px-2 xl:px-4 text-xs md:text-sm xl:text-base py-1 rounded-lg text-white ${props.color}`}>
             {props.avail}
           </div>
         </div>
@@ -119,7 +119,7 @@ function Searchcard(props) {
 
         <div className='items-center flex'>
           <button
-            className={`px-4 py-1 rounded border text-white bg-[#ff7f56] cursor-pointer ${
+            className={`px-2 lg:px-4 py-1 text-sm lg:text-base rounded border text-white bg-[#ff7f56] cursor-pointer ${
               isBorrowed || isUnavailable
                 ? 'bg-gray-500 border-gray-500 cursor-not-allowed'
                 : 'text-[#ff7f56] border-[#ff7f56]'

@@ -12,7 +12,7 @@ function GM() {
   }
 
   return (
-    <div className='text-2xl font-semibold text-zinc-800 py-6'>
+    <div className='text-2xl font-semibold text-zinc-800 py-6 px-6'>
       {greeting}
     </div>
   );

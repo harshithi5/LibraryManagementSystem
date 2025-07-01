@@ -77,11 +77,11 @@ function Navbar02() {
   };
 
   return (
-    <div className="h-20 w-full flex items-center justify-between sticky top-0 z-10 bg-zinc-200 px-6">
+    <div className="h-20 w-[calc(100vw-12rem)] lg:w-[calc(100vw-20rem)] flex items-center justify-between sticky top-0 z-10 bg-zinc-200  px-2 lg:px-6">
       {/* Search Bar */}
       <form
         onSubmit={handleSubmit}
-        className="flex items-center bg-white rounded-full px-4 py-2 w-md shadow-md"
+        className="flex items-center bg-white rounded-full px-4 py-2 w-40 md:w-54 lg:w-68 xl:w-110 shadow-md"
       >
         <img src={Search} className="w-5 h-5 mr-2" alt="search" />
         <input
@@ -94,7 +94,7 @@ function Navbar02() {
       </form>
 
       {/* Time & Date */}
-      <div className="text-zinc-600 text-sm font-medium bg-white rounded-full px-4 py-2 w-max shadow-md flex items-center gap-3">
+      <div className="text-zinc-600 text-sm font-medium bg-white rounded-full px-2 lg:px-4 py-2 w-max shadow-md flex items-center gap-1 lg:gap-3">
         <img src={Calendar} className='h-5' alt="calendar" />
         {currentTime}
       </div>
@@ -102,13 +102,13 @@ function Navbar02() {
       {/* Avatar + Dropdown */}
       <div className="relative" ref={avatarRef}>
         <div
-          className='flex bg-white rounded-3xl pl-0.5 pr-2 py-0.5 items-center gap-3 shadow-md cursor-pointer'
+          className='flex bg-white rounded-3xl pr-2 py-0.5 items-center  gap-1 lg:gap-3 shadow-md cursor-pointer'
           onClick={() => setShowDropdown(prev => !prev)}
         >
           <div className='h-8 w-8 rounded-full bg-red-800 flex items-center justify-center'>
             <img src={Avatar} className='h-full' alt="avatar" />
           </div>
-          <div className='text-zinc-600 text-sm font-medium'>{userName}</div>
+          <div className='hidden md:block text-zinc-600 text-sm font-medium'>{userName}</div>
           <div><img src={DD} className='h-8' alt="dropdown" /></div>
         </div>
 

@@ -12,7 +12,7 @@ function MainPage({ setIsLoginOpen, setIsSignupOpen, isLoginOpen, isSignupOpen }
     <div className={`relative bg-zinc-200 min-h-screen ${isLoginOpen ? "backdrop-blur-sm" : ""}`}>
       <Navbar01 onLoginClick={() => setIsLoginOpen(true)} onSignupClick={() => setIsSignupOpen(true)} />
       <Welcome onSignupClick={() => setIsSignupOpen(true)} />
-      <Features />
+      <Features /> 
       <Trendingbooks />
       <Popularauthors />
       {isLoginOpen && <LoginModal onClose={() => setIsLoginOpen(false)} />}

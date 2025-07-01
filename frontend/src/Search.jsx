@@ -44,10 +44,10 @@ function Search() {
       .catch(err => console.error("Error:", err));
   }, []);
 
-  if (loading) return <Loader />; 
+  if (loading) return <Loader />;  
 
   return (
-    <div className="p-10 px-0 flex flex-col overflow-y-auto h-full mt-5" style={{ scrollbarWidth: 'none' }}>
+    <div className="p-10 px-2 lg:px-6 flex flex-col overflow-y-auto h-full mt-5" style={{ scrollbarWidth: 'none' }}>
       {books.map((book, index) => (
         <Searchcard
           key={index}
