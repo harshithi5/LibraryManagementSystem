@@ -4,6 +4,7 @@ import Search from './assets/searchorange.svg';
 import Calendar from './assets/calendarorange.svg';
 import Avatar from './assets/avatar.svg';
 import DD from './assets/dropdown.svg';
+import Logout from './assets/logout.svg';
 import axios from 'axios';
 
 function Navbar02() {
@@ -65,10 +66,6 @@ function Navbar02() {
     }
   };
 
-  const handleProfile = () => {
-    setShowDropdown(false);
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     setShowDropdown(false);
@@ -113,17 +110,12 @@ function Navbar02() {
         </div>
 
         {showDropdown && (
-          <div className="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-20">
+          <div className="absolute right-0 mt-2 w-30 bg-white border rounded-lg shadow-lg z-20">
             <div
-              className="px-4 py-2 hover:bg-zinc-100 cursor-pointer text-zinc-700 text-sm rounded-lg"
-              onClick={handleProfile}
-            >
-              Profile
-            </div>
-            <div
-              className="px-4 py-2 hover:bg-zinc-100 cursor-pointer text-zinc-700 text-sm rounded-lg"
+              className="px-2 py-2 hover:bg-zinc-100 cursor-pointer text-zinc-700 text-sm rounded-lg flex gap-3"
               onClick={handleLogout}
             >
+              <img src={Logout} alt="Logout" className='h-5'/>
               Logout
             </div>
           </div>

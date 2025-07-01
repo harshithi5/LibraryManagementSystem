@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Historycard(props) {
   const today = new Date();
@@ -16,14 +17,19 @@ function Historycard(props) {
     statusClass = 'bg-red-600';
   }
 
-  console.log("Returned prop:", props.returned);
+  
+  const navigate = useNavigate();
+  const handleBookClick = (title) => {
+    navigate(`/dashboard/queryresult?q=${encodeURIComponent(title)}`);
+  };
+
 
 
   return (
     <div className='bg-white rounded-xl w-80 flex'>
       <div className='w-40 flex flex-col items-start justify-center p-3'>
         <div className='h-40 w-30'>
-          <img src={props.cover} className='h-full w-full rounded object-center' />
+          <img src={props.cover} className='h-full w-full rounded object-center cursor-pointer' onClick={() => handleBookClick(props.title)} />
         </div>
         <div className='text-zinc-800 text-[0.78rem] w-30'>
           {props.title}

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Searchcard from './Searchcard';
 import axios from 'axios';
+import Loader from './Loader';
 
 function Queryresult() {
     const [likedBooks, setLikedBooks] = useState([]);
-  const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState(null);
+    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLikedBooks = async () => {
@@ -47,6 +49,7 @@ function Queryresult() {
                 const res = await axios.get(`http://localhost:5000/books/queryresult?q=${encodeURIComponent(query)}`);;
                 console.log("Response data:", res.data);
                 setBooks(res.data);
+                setLoading(false);
             } catch (err) {
                 console.error('Error fetching search results:', err);
             }
@@ -55,8 +58,10 @@ function Queryresult() {
         fetchBooks();
     }, [query]);
 
+    if (loading) return <Loader />;  
+
     return (
-        <div className="p-10 px-0 flex flex-col overflow-y-auto h-full mt-5" style={{ scrollbarWidth: 'none' }}>
+        <div className="p-10 px-2 lg:px-6 flex flex-col overflow-y-auto h-full mt-5" style={{ scrollbarWidth: 'none' }}>
             {Array.isArray(books) && books.length > 0 ? (
                 books.map((book, index) => (
                     <Searchcard
