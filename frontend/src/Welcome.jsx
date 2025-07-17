@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from './assets/MobileLib.svg'
 
 function Welcome({onSignupClick}) {
   return (
@@ -23,7 +24,9 @@ function Welcome({onSignupClick}) {
       </div>
 
       {/* right */}
-      <div className='h-full w-2/5 bg-red-400'></div>
+      <div className='h-full w-2/5 relative'>
+        <img src={Icon} className='h-125 absolute bottom-0 -left-25' />
+      </div>
     </div>
   )
 }
