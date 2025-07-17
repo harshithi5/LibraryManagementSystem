@@ -1,38 +1,76 @@
-Library Management System  
-Setup Instructions
+# Library Management System
 
-This is a full-stack web application built with the MERN stack (MongoDB, Express.js, React, Node.js) for managing library operations.  
-Users can browse, like, borrow, and return books, while admins can manage the inventory.  
-The app includes user authentication, real-time book availability updates, and borrow history tracking.
+## Problem Statement:
+In my hometown, there is a library used by many, but the librarian always struggled due to the overwhelming number of books and the tedious task of manually registering every entry of readers and books in physical registers. This manual process made it difficult to track and verify entries throughout the day.
 
-1. Clone the repo:
+## The Solution:
+I decided to solve this problem using the skills I've gained. I built a Library Management System app that eliminates the hassle of manual updates while engaging users and saving their time.
 
-   git clone https://github.com/yourusername/library-management-system.git
-   cd library-management-system
+This app, built using the MERN Stack (MongoDB, Express, React, Node.js), simplifies the day-to-day life of anyone who loves borrowing and reading books regularly.
 
-2. Install dependencies:
+## Features:
 
-   cd backend
-   npm install
+### 1. Secure Authentication:
+Uses bcrypt for password hashing and JWT for authentication to ensure your privacy and secure logins. Your reading history stays yours.
 
-   Open a new terminal tab/window:
-   cd frontend
-   npm install
+### 2. Newly Arrived Books:
+Displays newly added books so readers can easily find fresh content they might have missed before.
 
-3. Create a .env file inside the backend/ folder:
+### 3. Trending Books:
+Highlights trending books to help readers stay updated with popular and recommended reads.
 
-   PORT=5000  
-   MONGO_URI=your_mongodb_connection_string  
-   JWT_SECRET=your_jwt_secret_key
+### 4. Recent Reads:
+Easily revisit important or heart-touching books through the recent reads feature.
 
-4. Start the app:
+### 5. Search Functionality:
+Find books quickly by searching for them by title, author, or category.
 
-   In the backend folder:
-   npm run dev
+### 6. Shelf & Availability Management:
+Displays book shelf information to ease physical searching. Prevents borrowing the same book more than once and shows real-time availability.
 
-   In the frontend folder:
-   npm run dev
+### 7. Favorites Collection:
+Users can mark and collect their favorite books in one convenient place.
 
-5. Make sure there's an uploads/ folder at the root level:
+### 8. Borrow History Tracking:
+Track borrowed books, see which ones were returned on time, and check any overdue books.
 
-   Create it manually if it’s missing. This folder is used to store uploaded book images or files.
+## Setup Instructions
+
+### 1. Clone the repository:
+```bash
+git clone https://github.com/harshithi5/LibraryManagementSystem.git
+cd LibraryManagementSystem
+```
+
+### 2. Install Dependencies:
+#### Backend:
+```bash
+cd backend
+npm install
+```
+
+#### Frontend:
+```bash
+cd frontend
+npm install
+```
+
+### 3. Create a .env file inside the backend/ folder:
+```bash
+PORT=5000  
+MONGO_URI=your_mongodb_connection_string  
+JWT_SECRET=your_jwt_secret_key
+```
+
+### 4. Start the application:
+#### Backend:
+```bash
+cd backend
+npm run dev
+```
+
+#### Frontend:
+```bash
+cd frontend
+npm run dev
+```
