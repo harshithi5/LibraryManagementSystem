@@ -74,3 +74,33 @@ npm run dev
 cd frontend
 npm run dev
 ```
+
+## Screenshots
+
+### Login Page  
+<img src="./App%20ScreenShots/Login01.png" width="1000"/>  
+<img src="./App%20ScreenShots/Login02.png" width="1000"/>
+
+### Home Page  
+<img src="./App%20ScreenShots/Home.png" width="1000"/>
+
+### Search Page  
+<img src="./App%20ScreenShots/Search.png" width="1000"/>
+
+### Keyword Search Example  
+<img src="./App%20ScreenShots/Keyword%20Search.png" width="1000"/>
+
+### Book Borrow Page  
+<img src="./App%20ScreenShots/Book%20Borrow.png" width="1000"/>
+
+### History Page  
+<img src="./App%20ScreenShots/History.png" width="1000"/>
+
+### Shelf Page  
+<img src="./App%20ScreenShots/Shelf.png" width="1000"/>
+
+
+## Demo Video
+[Watch the Demo Video](https://youtu.be/UmvZdwczlc0)
+
+
